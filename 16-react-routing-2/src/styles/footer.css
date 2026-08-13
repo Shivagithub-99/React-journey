@@ -1,0 +1,17 @@
+.footer-container{
+    background-color: rgba(26, 26, 28, 0.966);
+    height: 10rem;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+h3{
+    color: white;
+    font-family: sans-serif;
+}
+
+p{
+    color: white;
+    font-family: sans-serif;
+}
