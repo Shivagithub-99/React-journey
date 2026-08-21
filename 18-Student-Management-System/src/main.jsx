@@ -7,6 +7,7 @@ import Home from './pages/Home.jsx'
 import Edit from './pages/Edit.jsx'
 import View from './pages/View.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
+import Create from './pages/Create.jsx'
 
 let routes = createBrowserRouter([
   {
@@ -15,12 +16,16 @@ let routes = createBrowserRouter([
     errorElement: <ErrorPage/>
   },
   {
-    path: "/edit",
+    path: "/edit/:id",
     element: <Edit/>
   },
   {
-    path: "/view",
+    path: "/view/:id",
     element: <View/>
+  },
+  {
+    path: "/create",
+    element: <Create/>
   }
 ])
 

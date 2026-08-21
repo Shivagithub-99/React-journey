@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const Edit = () => {
+const Create = () => {
 
-    const { id } = useParams()
     const navigate = useNavigate()
 
     const [name, setName] = useState("")
@@ -14,37 +13,10 @@ const Edit = () => {
     const [marks, setMarks] = useState("")
     const [isPresent, setIsPresent] = useState("")
 
-    async function getStudent() {
-
-        try {
-            const res = await axios.get(
-                `http://localhost:3000/students/${id}`
-            )
-
-            const student = res.data
-
-            setName(student.name)
-            setCourse(student.course)
-            setAge(student.age)
-            setLocation(student.location)
-            setMarks(student.marks)
-            setIsPresent(String(student.isPresent))
-
-        } catch (error) {
-            console.log("Error fetching student:", error)
-        }
-    }
-
-    useEffect(() => {
-        getStudent()
-    }, [id])
-
-
-    async function updateStudent(e) {
-
+    async function collectDetails(e) {
         e.preventDefault()
 
-        const updatedStudent = {
+        const student = {
             name,
             course,
             age: Number(age),
@@ -54,19 +26,16 @@ const Edit = () => {
         }
 
         try {
-
-            await axios.put(
-                `http://localhost:3000/students/${id}`,
-                updatedStudent
+            await axios.post(
+                "http://localhost:3000/students",
+                student
             )
 
             navigate("/")
-
         } catch (error) {
-            console.log("Error updating student:", error)
+            console.log("Error adding student:", error)
         }
     }
-
 
     return (
         <div className="min-vh-100 bg-light py-5">
@@ -74,20 +43,23 @@ const Edit = () => {
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-10 col-lg-8 col-xl-7">
                         <div className="card border-0 shadow-lg">
-                            <div className="card-header bg-warning border-0 py-4 text-center">
+                            <div className="card-header bg-info border-0 py-4 text-center">
                                 <h2 className="fw-bold mb-1">
-                                    Edit Student
+                                    Add Student
                                 </h2>
+
                                 <p className="text-dark mb-0">
-                                    Update student information
+                                    Enter the student's details below
                                 </p>
                             </div>
 
                             <div className="card-body p-4 p-md-5">
-                                <form onSubmit={updateStudent}>
-                                    <div className="row g-3">
-                                        <div className="col-12">
 
+                                <form onSubmit={collectDetails}>
+
+                                    <div className="row g-3">
+
+                                        <div className="col-12">
                                             <label
                                                 htmlFor="name"
                                                 className="form-label fw-semibold"
@@ -99,6 +71,7 @@ const Edit = () => {
                                                 type="text"
                                                 className="form-control"
                                                 id="name"
+                                                placeholder="Enter student name"
                                                 value={name}
                                                 onChange={(e) =>
                                                     setName(e.target.value)
@@ -119,6 +92,7 @@ const Edit = () => {
                                                 type="text"
                                                 className="form-control"
                                                 id="course"
+                                                placeholder="e.g. MERN"
                                                 value={course}
                                                 onChange={(e) =>
                                                     setCourse(e.target.value)
@@ -128,7 +102,6 @@ const Edit = () => {
                                         </div>
 
                                         <div className="col-md-6">
-
                                             <label
                                                 htmlFor="age"
                                                 className="form-label fw-semibold"
@@ -140,6 +113,7 @@ const Edit = () => {
                                                 type="number"
                                                 className="form-control"
                                                 id="age"
+                                                placeholder="Enter age"
                                                 min="1"
                                                 value={age}
                                                 onChange={(e) =>
@@ -150,7 +124,6 @@ const Edit = () => {
                                         </div>
 
                                         <div className="col-md-6">
-
                                             <label
                                                 htmlFor="location"
                                                 className="form-label fw-semibold"
@@ -162,6 +135,7 @@ const Edit = () => {
                                                 type="text"
                                                 className="form-control"
                                                 id="location"
+                                                placeholder="e.g. Hyderabad"
                                                 value={location}
                                                 onChange={(e) =>
                                                     setLocation(e.target.value)
@@ -171,7 +145,6 @@ const Edit = () => {
                                         </div>
 
                                         <div className="col-md-6">
-
                                             <label
                                                 htmlFor="marks"
                                                 className="form-label fw-semibold"
@@ -183,6 +156,7 @@ const Edit = () => {
                                                 type="number"
                                                 className="form-control"
                                                 id="marks"
+                                                placeholder="Enter marks"
                                                 min="0"
                                                 max="100"
                                                 value={marks}
@@ -194,7 +168,6 @@ const Edit = () => {
                                         </div>
 
                                         <div className="col-12">
-
                                             <label
                                                 htmlFor="attendance"
                                                 className="form-label fw-semibold"
@@ -211,9 +184,8 @@ const Edit = () => {
                                                 }
                                                 required
                                             >
-
                                                 <option value="">
-                                                    Select Attendance
+                                                    Select attendance
                                                 </option>
                                                 <option value="true">
                                                     Present
@@ -233,12 +205,11 @@ const Edit = () => {
                                         >
                                             Cancel
                                         </button>
-
                                         <button
                                             type="submit"
-                                            className="btn btn-warning fw-semibold flex-fill"
+                                            className="btn btn-info fw-semibold flex-fill"
                                         >
-                                            Update Student
+                                            Add Student
                                         </button>
                                     </div>
                                 </form>
@@ -250,4 +221,4 @@ const Edit = () => {
         </div>
     )
 }
-export default Edit
+export default Create
