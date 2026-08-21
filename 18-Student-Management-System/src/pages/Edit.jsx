@@ -18,7 +18,7 @@ const Edit = () => {
 
         try {
             const res = await axios.get(
-                `http://localhost:3000/students/${id}`
+                `https://student-management-backend-gs1g.onrender.com/students/${id}`
             )
 
             const student = res.data
@@ -56,7 +56,7 @@ const Edit = () => {
         try {
 
             await axios.put(
-                `http://localhost:3000/students/${id}`,
+                `https://student-management-backend-gs1g.onrender.com/students/${id}`,
                 updatedStudent
             )
 

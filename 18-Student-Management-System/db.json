@@ -72,6 +72,5 @@
       "isPresent": "true",
       "id": "uc2BuJqeMKA"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }

@@ -9,7 +9,7 @@ const View = () => {
     async function getStudent() {
         try {
             const res = await fetch(
-                `http://localhost:3000/students/${id}`
+                `https://student-management-backend-gs1g.onrender.com/students/${id}`
             )
 
             const data = await res.json()

@@ -27,7 +27,7 @@ const Create = () => {
 
         try {
             await axios.post(
-                "http://localhost:3000/students",
+                "https://student-management-backend-gs1g.onrender.com/students",
                 student
             )
 

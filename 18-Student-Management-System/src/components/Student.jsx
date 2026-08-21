@@ -9,7 +9,7 @@ const Student = (props) => {
 
         try {
             await axios.delete(
-                `http://localhost:3000/students/${props.stds.id}`
+                `https://student-management-backend-gs1g.onrender.com/students/${props.stds.id}`
             )
 
             window.location.reload()

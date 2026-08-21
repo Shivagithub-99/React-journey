@@ -9,7 +9,7 @@ const Home = () => {
 
     async function getStudents() {
         try {
-            const res = await fetch('http://localhost:3000/students')
+            const res = await fetch('https://student-management-backend-gs1g.onrender.com/students')
             const stds = await res.json()
 
             setStudents(stds)
